@@ -1,0 +1,64 @@
+package classtimer.main;
+
+import javax.swing.JFrame;
+
+public class Timer 
+{
+	int totalTime;
+	int timeRemaining;
+	long timeLast;
+	boolean isRunning;
+	SoundPlayer player;
+	
+	public Timer(JFrame frame)
+	{
+		player = new SoundPlayer(frame);
+		isRunning = false;
+		timeRemaining = 0;
+	}
+	
+	public void setTimeToCount(int time)
+	{
+		timeRemaining = time * 100;
+	}
+	
+	public void start()
+	{
+		isRunning = true;
+		timeLast = System.currentTimeMillis();
+	}
+	
+	public void pause()
+	{
+		isRunning = false;
+	}
+	
+	public void reset()
+	{
+		isRunning = false;
+	}
+	
+	public void update()
+	{
+		timeRemaining -= System.currentTimeMillis() - timeLast;
+		if(timeRemaining <= 0)
+		{
+			playFinishedSound();
+		}
+	}
+	
+	public String getFormattedTime()
+	{
+		return (int)Math.floor(timeRemaining/6000.0) + ":" + (int)Math.floor((timeRemaining%6000)/100.0) + "." + (int)Math.floor((timeRemaining%6000)%100.0);
+	}
+	
+	public void pickSound()
+	{
+		player.pickSound();
+	}
+	
+	private void playFinishedSound()
+	{
+		player.playLoadedSound();
+	}
+}

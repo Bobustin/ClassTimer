@@ -1,0 +1,9 @@
+package classtimer.main;
+
+public class Timer 
+{
+	public Timer()
+	{
+		
+	}
+}

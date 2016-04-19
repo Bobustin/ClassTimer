@@ -1,0 +1,48 @@
+package classtimer.main;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+
+public class GUI 
+{
+	private JFrame mainFrame;
+	private JPanel controlPanel;
+	private JLabel timeRemaining;
+	private Timer timer;
+	private JTextField timeEntry;
+	
+	public GUI()
+	{
+		createGUI();
+		Timer timer = new Timer(mainFrame);
+	}
+	
+	private void createGUI()
+	{
+		mainFrame = new JFrame("Timer Window");
+	    mainFrame.setSize(400,400);    
+	    mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    
+	    controlPanel = new JPanel();
+	    controlPanel.setLayout(new GridLayout(1, 5));
+
+	    
+	    timeRemaining = new JLabel("00:15:00.000");
+	    
+	    mainFrame.add(timeRemaining,BorderLayout.CENTER);
+	    mainFrame.add(controlPanel,BorderLayout.SOUTH);
+	    mainFrame.setVisible(true); 
+	}
+	
+	private void update(int timeRem)
+	{
+		timeRemaining.setText(Math.floor(timeRem/6000.0) + ":" + Math.floor((timeRem%6000)/100.0) + "." + Math.floor((timeRem%6000)%100.0));
+		mainFrame.revalidate();
+	}
+}

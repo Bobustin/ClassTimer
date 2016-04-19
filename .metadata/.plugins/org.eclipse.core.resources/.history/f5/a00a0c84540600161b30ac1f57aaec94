@@ -1,0 +1,29 @@
+package classtimer.main;
+
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+public class SoundLoaderPlayer 
+{
+	public SoundLoaderPlayer()
+	{
+		
+	}
+	
+	public void PlaySound(String filePath)
+	{
+		try
+	    {
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(AudioSystem.getAudioInputStream(new File(filePath)));
+	        clip.start();
+	    }
+	    catch (Exception exc)
+	    {
+	        exc.printStackTrace(System.out);
+	    }
+	}
+}

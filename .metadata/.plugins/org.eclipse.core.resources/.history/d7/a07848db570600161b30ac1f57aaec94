@@ -1,0 +1,47 @@
+package classtimer.main;
+
+import java.io.File;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
+public class SoundPlayer 
+{
+	JFileChooser fc;
+	File soundFile;
+	JFrame frame;
+	
+	public SoundPlayer(JFrame frame)
+	{
+		this.frame = frame;
+	}
+	
+	public void pickSound()
+	{	    
+	    int returnVal = fc.showOpenDialog(frame);
+	    
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+        } else {
+            log.append("Open command cancelled by user." + newline);
+        }
+        log.setCaretPosition(log.getDocument().getLength());
+	}
+	
+	public void playLoadedSound()
+	{
+		if(soundFile == null)
+			return;
+		try
+	    {
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(AudioSystem.getAudioInputStream(soundFile));
+	        clip.start();
+	    }
+	    catch (Exception exc)
+	    {
+	        exc.printStackTrace(System.out);
+	    }
+	}
+}

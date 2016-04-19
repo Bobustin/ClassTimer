@@ -1,0 +1,22 @@
+package classtimer.main;
+
+public class SoundLoaderPlayer 
+{
+	public SoundLoaderPlayer()
+	{
+		
+	}
+	
+	public void PlaySound(String filePath)
+	{
+	    
+	    InputStream in = new FileInputStream(gongFile);
+	 
+	    // create an audiostream from the inputstream
+	    AudioStream audioStream = new AudioStream(in);
+	 
+	    // play the audio clip with the audioplayer class
+	    AudioPlayer.player.start(audioStream);
+	  }
+	}
+}

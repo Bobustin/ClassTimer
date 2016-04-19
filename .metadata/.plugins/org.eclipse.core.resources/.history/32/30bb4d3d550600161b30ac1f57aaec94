@@ -1,0 +1,31 @@
+package classtimer.main;
+
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class GUI 
+{
+	private JFrame mainFrame;
+	private JPanel controlPanel;
+	
+	public GUI()
+	{
+		createGUI();
+	}
+	
+	private void createGUI()
+	{
+		mainFrame = new JFrame("Timer Window");
+	    mainFrame.setSize(400,400);    
+	      
+	    controlPanel = new JPanel();
+	    controlPanel.setLayout(new GridLayout(1, 5));
+	
+	    mainFrame.add(headerLabel);
+	      mainFrame.add(controlPanel);
+	      mainFrame.add(statusLabel);
+	      mainFrame.setVisible(true); 
+	}
+}

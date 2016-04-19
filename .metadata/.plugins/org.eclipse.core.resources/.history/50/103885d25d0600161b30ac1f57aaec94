@@ -1,0 +1,76 @@
+package classtimer.main;
+
+import java.text.SimpleDateFormat;
+
+import javax.swing.JFrame;
+
+public class Timer 
+{
+	int totalTime;
+	int timeRemaining;
+	long timeLast;
+	boolean isRunning;
+	SoundPlayer player;
+	SimpleDateFormat df
+	
+	public Timer(JFrame frame)
+	{
+		player = new SoundPlayer(frame);
+		isRunning = false;
+		timeRemaining = 0;
+		reset();
+		df = new SimpleDateFormat("HH:mm:ss");
+	}
+	
+	public void setTimeToCount(int time)
+	{
+		totalTime = time;
+		timeRemaining = time * 1000;
+	}
+	
+	public void start()
+	{
+		isRunning = true;
+		timeLast = System.currentTimeMillis();
+	}
+	
+	public void pause()
+	{
+		isRunning = false;
+	}
+	
+	public void reset()
+	{
+		isRunning = false;
+		setTimeToCount(totalTime);
+	}
+	
+	public void update()
+	{
+		if(isRunning)
+		{
+			timeRemaining -= System.currentTimeMillis() - timeLast;
+			timeLast = System.currentTimeMillis();
+			if(timeRemaining <= 0)
+			{
+				playFinishedSound();
+				reset();
+			}
+		}
+	}
+	
+	public String getFormattedTime()
+	{
+		return (int)Math.floor(timeRemaining/60000.0) + ":" + (int)Math.floor((timeRemaining%60000)/1000.0) + "." + (int)Math.floor((timeRemaining%60000)%1000.0);
+	}
+	
+	public void pickSound()
+	{
+		player.pickSound();
+	}
+	
+	private void playFinishedSound()
+	{
+		player.playLoadedSound();
+	}
+}

@@ -1,0 +1,30 @@
+package classtimer.main;
+
+public class Timer 
+{
+	int timeRemaining;
+	long timeLast;
+	boolean isRunning;
+	
+	public Timer()
+	{
+		isRunning = false;
+		timeRemaining = 0;
+	}
+	
+	public void setTimeToCount(int time)
+	{
+		timeRemaining = time * 100;
+	}
+	
+	public void start()
+	{
+		isRunning = true;
+		timeLast = System.currentTimeMillis();
+	}
+	
+	public void update()
+	{
+		timeRemaining -= System.currentTimeMillis() - timeLast;
+	}
+}

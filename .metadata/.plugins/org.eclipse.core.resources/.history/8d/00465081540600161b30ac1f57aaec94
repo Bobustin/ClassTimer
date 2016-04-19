@@ -1,0 +1,25 @@
+package classtimer.main;
+
+import javax.sound.sampled.AudioInputStream;
+import sun.audio.*;
+
+public class SoundLoaderPlayer 
+{
+	public SoundLoaderPlayer()
+	{
+		
+	}
+	
+	public void PlaySound(String filePath)
+	{
+	    
+	    InputStream in = new FileInputStream(gongFile);
+	 
+	    // create an audiostream from the inputstream
+	    AudioInputStream audioStream = new AudioInputStream(in);
+	 
+	    // play the audio clip with the audioplayer class
+	    AudioPlayer.player.start(audioStream);
+	  }
+	}
+}

@@ -1,0 +1,6 @@
+package classtimer.main;
+
+public class Runner 
+{
+	Timer t = new Timer();
+}

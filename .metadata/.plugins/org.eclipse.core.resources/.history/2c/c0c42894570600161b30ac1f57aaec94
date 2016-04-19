@@ -1,0 +1,51 @@
+package classtimer.main;
+
+import java.io.File;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JFileChooser;
+
+public class SoundPlayer 
+{
+	JFileChooser fileChooser;
+	File soundFile;
+	
+	public SoundPlayer()
+	{
+		pickSound();
+	}
+	
+	public void pickSound()
+	{
+		 = new JFileChooser();
+	    fileChooser.setDialogTitle("Choose a file");
+	    fileChooser.setVisible(true);
+	    
+	    int returnVal = fc.showOpenDialog(FileChooserDemo.this);
+	    
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            //This is where a real application would open the file.
+            log.append("Opening: " + file.getName() + "." + newline);
+        } else {
+            log.append("Open command cancelled by user." + newline);
+        }
+        log.setCaretPosition(log.getDocument().getLength());
+	}
+	
+	public void playLoadedSound()
+	{
+		if(soundFile == null)
+			return;
+		try
+	    {
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(AudioSystem.getAudioInputStream(soundFile));
+	        clip.start();
+	    }
+	    catch (Exception exc)
+	    {
+	        exc.printStackTrace(System.out);
+	    }
+	}
+}
